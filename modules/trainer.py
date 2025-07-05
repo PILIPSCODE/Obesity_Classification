@@ -111,10 +111,10 @@ def run_fn(fn_args):
             model, tf_transform_output
         ).get_concrete_function(
             {
-                "Height": tf.TensorSpec([None, 1], dtype=tf.int64),
-                "Weight": tf.TensorSpec([None, 1], dtype=tf.int64),
-                "BMI": tf.TensorSpec([None, 1], dtype=tf.int64),
-                "Age": tf.TensorSpec([None, 1], dtype=tf.int64),
+                "Height": tf.TensorSpec([None, 1], dtype=tf.float32),
+                "Weight": tf.TensorSpec([None, 1], dtype=tf.float32),
+                "BMI": tf.TensorSpec([None, 1], dtype=tf.float32),
+                "Age": tf.TensorSpec([None, 1], dtype=tf.float32),
                 "Gender": tf.TensorSpec([None, 1], dtype=tf.int64),
             }
         )
