@@ -8,6 +8,9 @@ feature {
     dim {
       size: 1
     }
+    dim {
+      size: 1
+    }
   }
 }
 feature {
@@ -17,6 +20,9 @@ feature {
     min_fraction: 1.0
   }
   shape {
+    dim {
+      size: 1
+    }
     dim {
       size: 1
     }
@@ -44,6 +50,9 @@ feature {
     dim {
       size: 1
     }
+    dim {
+      size: 1
+    }
   }
 }
 feature {
@@ -68,6 +77,9 @@ feature {
     min_fraction: 1.0
   }
   shape {
+    dim {
+      size: 1
+    }
     dim {
       size: 1
     }

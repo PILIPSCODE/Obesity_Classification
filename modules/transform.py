@@ -40,6 +40,7 @@ def preprocessing_fn(inputs):
 
     outputs = {}
 
+    # KATEGORIKAL
     for key in CATEGORICAL_FEATURES:
         dim = CATEGORICAL_FEATURES[key]
         int_value = tft.compute_and_apply_vocabulary(inputs[key], top_k=dim + 1)
@@ -47,9 +48,13 @@ def preprocessing_fn(inputs):
             int_value, num_labels=dim + 1
         )
 
+    # NUMERIKAL
     for feature in NUMERICAL_FEATURES:
-        outputs[transformed_name(feature)] = tft.scale_to_0_1(inputs[feature])
+        outputs[transformed_name(feature)] = tf.expand_dims(
+            tft.scale_to_0_1(inputs[feature]), -1
+        )
 
+    # LABEL
     outputs[transformed_name(LABEL_KEY)] = tft.compute_and_apply_vocabulary(
         inputs[LABEL_KEY], 4
     )
