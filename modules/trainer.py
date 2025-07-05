@@ -115,7 +115,7 @@ def run_fn(fn_args):
                 "Weight": tf.TensorSpec([None, 1], dtype=tf.float32),
                 "BMI": tf.TensorSpec([None, 1], dtype=tf.float32),
                 "Age": tf.TensorSpec([None, 1], dtype=tf.float32),
-                "Gender": tf.TensorSpec([None, 1], dtype=tf.string),
+                "Gender": tf.TensorSpec([None, 1], dtype=tf.int64),
             }
         )
     }
