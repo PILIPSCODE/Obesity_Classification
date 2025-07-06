@@ -9,6 +9,7 @@ from tfx.components import (
     StatisticsGen,
     SchemaGen,
     ExampleValidator,
+    Tuner,
     Transform,
     Trainer,
     Evaluator,
@@ -27,6 +28,7 @@ def init_components(
     data_dir,
     transform_module,
     training_module,
+    tuner_module,
     training_steps,
     eval_steps,
     serving_model_dir,
@@ -70,11 +72,21 @@ def init_components(
         module_file=os.path.abspath(transform_module),
     )
 
+    tuner = Tuner(
+        module_file=os.path.abspath(tuner_module),
+        examples=transform.outputs["transformed_examples"],
+        transform_graph=transform.outputs["transform_graph"],
+        schema=schema_gen.outputs["schema"],
+        train_args=trainer_pb2.TrainArgs(splits=["train"], num_steps=training_steps),
+        eval_args=trainer_pb2.EvalArgs(splits=["eval"], num_steps=eval_steps),
+    )
+
     trainer = Trainer(
         module_file=os.path.abspath(training_module),
         examples=transform.outputs["transformed_examples"],
         transform_graph=transform.outputs["transform_graph"],
         schema=schema_gen.outputs["schema"],
+        hyperparameters=tuner.outputs["best_hyperparameters"],
         train_args=trainer_pb2.TrainArgs(splits=["train"], num_steps=training_steps),
         eval_args=trainer_pb2.EvalArgs(splits=["eval"], num_steps=eval_steps),
     )
@@ -87,7 +99,7 @@ def init_components(
 
     slicing_specs = [
         tfma.SlicingSpec(),
-        tfma.SlicingSpec(feature_keys=["Gender"]),
+        tfma.SlicingSpec(feature_keys=["Gender_xf"]),
     ]
 
     metrics_specs = [

@@ -9,6 +9,6 @@ scrape_configs:
   - job_name: "prometheus"
     scrape_interval: 5s 
     metrics_path: /monitoring/prometheus/metrics 
-    scheme: "http" 
+    scheme: "https" 
     static_configs:
       - targets: ['obesityclassification-production.up.railway.app'] 

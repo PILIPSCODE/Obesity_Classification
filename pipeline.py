@@ -12,6 +12,7 @@ PIPELINE_NAME = "obesity-pipeline"
 DATA_ROOT = "data"
 TRANSFORM_MODULE_FILE = "modules/transform.py"
 TRAINER_MODULE_FILE = "modules/trainer.py"
+TUNER_MODULE_FILE = "modules/tuner.py"
 # requirement_file = os.path.join(root, "requirements.txt")
 
 # pipeline outputs
@@ -51,6 +52,7 @@ if __name__ == "__main__":
         DATA_ROOT,
         training_module=TRAINER_MODULE_FILE,
         transform_module=TRANSFORM_MODULE_FILE,
+        tuner_module=TUNER_MODULE_FILE,
         training_steps=5000,
         eval_steps=1000,
         serving_model_dir=serving_model_dir,
