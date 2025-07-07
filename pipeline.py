@@ -39,7 +39,7 @@ def init_local_pipeline(components, pipeline_root: Text) -> pipeline.Pipeline:
         metadata_connection_config=metadata.sqlite_metadata_connection_config(
             metadata_path
         ),
-        eam_pipeline_args=beam_args,
+        beam_pipeline_args=beam_args,
     )
 
 

@@ -154,6 +154,7 @@ def init_components(
         schema_gen,
         example_validator,
         transform,
+        tuner,
         trainer,
         model_resolver,
         evaluator,
